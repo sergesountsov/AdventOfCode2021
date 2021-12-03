@@ -32,8 +32,8 @@ for (int i = 0; i < lines[0].Length; i++) {
 }
 
 Console.WriteLine("Most common Count: {0}, least common count {1}", mostCommon.Count, leastCommon.Count);
-int oxygen = ConvertFromBinary(mostCommon[0]);
-int co2 = ConvertFromBinary(leastCommon[0]);
+int oxygen = Convert.ToInt32(mostCommon[0],2);
+int co2 = Convert.ToInt32(leastCommon[0],2);
 Console.WriteLine("Oxygen: {0} ({1}), Co2: {2} ({3}), result: {4}", oxygen, mostCommon[0], co2, leastCommon[0], oxygen * co2);
 
 void Split(List<string> lines, int position, out List<string> ones, out List<string> zeroes) {
@@ -46,15 +46,4 @@ void Split(List<string> lines, int position, out List<string> ones, out List<str
             zeroes.Add(line);
         }
     }
-}
-
-int ConvertFromBinary (string s) {
-    int result=0;
-    foreach (char c in s) {
-        result *= 2;
-        if (c == '1') {
-            result += 1;
-        }
-    }
-    return result;
 }
