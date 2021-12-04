@@ -8,13 +8,24 @@
         boards.Add(new Board(sr));
     }
     Console.WriteLine($"Read {boards.Count} boards");
+    Board first = null;
+    Board last = null;
+    int lastPlay=0;
     foreach (var play in plays) {
         foreach (var board in boards) {
+            if (board.Done)
+                continue;
+
             if (board.Mark(play)) {
-                var score = board.Score();
-                Console.WriteLine ($"Board score: {score}, play: {play}, result: {score*play}");
-                return;
+                if (first == null ) {
+                    first = board;
+                    Console.WriteLine ($"First Board score: {first.Score()}, play: {play}, PART 1 result: {first.Score()*play}");
+                }
+                last = board;
+                lastPlay = play;
             }
         }
     }
+    Console.WriteLine ($"Last Board score: {last.Score()}, play: {lastPlay}, PART 2 result: {last.Score()*lastPlay}");
+ 
 }

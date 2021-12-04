@@ -1,6 +1,7 @@
 public class Board {
     private int[,] numbers = new int[5,5];
     private bool[,] marked = new bool[5,5];
+    public bool Done { get; private set;} = false;
 
     public Board(StreamReader sr) {
         Read(sr);
@@ -35,13 +36,16 @@ public class Board {
                 break;
             }
         }
-        if (!hasUnmarked) return true;
-
+        if (!hasUnmarked) {
+            Done=true;
+            return true;
+        }
         for (int col=0; col <marked.GetLength(1); col ++) {
             if (!marked[cr, col]) {
                 return false;
             }
         }
+        Done=true;
         return true;
     }
 
