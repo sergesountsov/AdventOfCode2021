@@ -6,10 +6,10 @@ public class Board {
         Read(sr);
     }
     public void Read (StreamReader sr) {
-        for (int row =0; row <5; row++) {
-            string[] line = (sr.ReadLine()).Split(" ");
-            for (int col =0; col < 5; col++ ) {
-                numbers[row,col] = int.Parse(line[col]);
+        for (int row =0; row <numbers.GetLength(0); row++) {
+            string line = sr.ReadLine();
+            for (int col =0; col < numbers.GetLength(1); col++ ) {
+                numbers[row,col] = int.Parse(line.Substring(col*3,2).Trim());
                 marked[row,col]=false;
             }
         }

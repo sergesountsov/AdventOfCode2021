@@ -7,4 +7,14 @@
         sr.ReadLine();        
         boards.Add(new Board(sr));
     }
+    Console.WriteLine($"Read {boards.Count} boards");
+    foreach (var play in plays) {
+        foreach (var board in boards) {
+            if (board.Mark(play)) {
+                var score = board.Score();
+                Console.WriteLine ($"Board score: {score}, play: {play}, result: {score*play}");
+                return;
+            }
+        }
+    }
 }
