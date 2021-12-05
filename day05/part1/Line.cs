@@ -1,0 +1,1 @@
+public readonly record struct Line (int X1, int Y1, int X2, int Y2);
