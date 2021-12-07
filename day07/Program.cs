@@ -8,17 +8,22 @@ var crabGroups =
 
 Console.WriteLine($"Group Count: {crabGroups.Count}");
 
-var minFuel = int.MaxValue;
+Console.WriteLine($"Part1: {FuelReqs(part1_fuel)}");
 
-for (int i =0; i < crabGroups.Count; i++ ){
-    int currentFuel =0;
-    for (int j = 0; j < crabGroups.Count; j++){
-        if (i ==j ) {
-            continue;
+int FuelReqs (Func<int, int, int> fuelNeed) {
+    var minFuel = int.MaxValue;
+
+    for (int i =0; i < crabGroups.Count; i++ ){
+        int currentFuel =0;
+        for (int j = 0; j < crabGroups.Count; j++){
+            if (i ==j ) {
+                continue;
+            }
+            currentFuel += crabGroups[j].Count*fuelNeed(crabGroups[i].Position, crabGroups[j].Position);
         }
-        currentFuel += crabGroups[j].Count*Math.Abs(crabGroups[i].Position - crabGroups[j].Position);
+        minFuel = Math.Min(minFuel, currentFuel);
     }
-    minFuel = Math.Min(minFuel, currentFuel);
+    return minFuel;
 }
 
-Console.WriteLine($"Part1: {minFuel}");
+int part1_fuel (int pos1, int pos2) => Math.Abs(pos1-pos2);
