@@ -1,0 +1,1 @@
+public record struct CrabGroup (int Position, int Count);
