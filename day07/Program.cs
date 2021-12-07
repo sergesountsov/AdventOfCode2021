@@ -6,26 +6,19 @@ var crabGroups =
     orderby crabGroup.Key
     select new CrabGroup {Position = crabGroup.Key, Count = crabGroup.Count()}).ToList();
 
-foreach (CrabGroup grp in crabGroups) {
-    Console.WriteLine (grp);
-}
-int leftCount=0, rightCount=0, leftFuel=0, rightFuel=0;
-crabGroups.ForEach((grp)=> {rightCount+=grp.Count; rightFuel+=grp.Position*grp.Count;} );
-// take out fist group 
-rightCount -= crabGroups[0].Count;
-rightFuel -= rightCount*crabGroups[0].Position;
-Console.WriteLine($"right count: {rightCount}. right fuel:{rightFuel}");
+Console.WriteLine($"Group Count: {crabGroups.Count}");
 
-int minFuel = leftFuel+rightFuel;
+var minFuel = int.MaxValue;
 
-for (int i =1; i < crabGroups.Count; i++) {
-    leftCount += crabGroups[i-1].Count;
-    leftFuel += leftCount * (crabGroups[i].Position - crabGroups[i-1].Position);
-    rightFuel -= rightCount * (crabGroups[i].Position - crabGroups[i-1].Position);
-    rightCount -= crabGroups[i].Count;
-    if (minFuel > leftFuel + rightFuel) {
-        minFuel = leftFuel + rightFuel;
+for (int i =0; i < crabGroups.Count; i++ ){
+    int currentFuel =0;
+    for (int j = 0; j < crabGroups.Count; j++){
+        if (i ==j ) {
+            continue;
+        }
+        currentFuel += crabGroups[j].Count*Math.Abs(crabGroups[i].Position - crabGroups[j].Position);
     }
+    minFuel = Math.Min(minFuel, currentFuel);
 }
 
-Console.WriteLine ($"Part1: {minFuel}");
+Console.WriteLine($"Part1: {minFuel}");
