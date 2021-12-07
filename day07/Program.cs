@@ -9,6 +9,7 @@ var crabGroups =
 Console.WriteLine($"Group Count: {crabGroups.Count}");
 
 Console.WriteLine($"Part1: {FuelReqs(part1_fuel)}");
+Console.WriteLine($"Part2: {FuelReqs(part2_fuel)}");
 
 int FuelReqs (Func<int, int, int> fuelNeed) {
     var minFuel = int.MaxValue;
@@ -27,3 +28,4 @@ int FuelReqs (Func<int, int, int> fuelNeed) {
 }
 
 int part1_fuel (int pos1, int pos2) => Math.Abs(pos1-pos2);
+int part2_fuel (int pos1, int pos2) => Math.Abs(pos1-pos2)*(Math.Abs(pos1-pos2)+1)/2;
