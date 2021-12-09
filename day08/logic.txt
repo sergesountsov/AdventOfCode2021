@@ -24,8 +24,9 @@ b    .  b    .  .    c  b    c  b    c
    Compare 1 (len 2) and 2,3,5 (len 5) - find one which has all the segments from 1 -> 3 we know middle segment dddd because we found aaaa and gggg earlier
    From 4 (len 4) remove 1 (len 2) and dddd -> get bbbb
    Find 5 - le 5 which has a,b,d,g  -> find fffff
-   from 1 -?> find cccc
-   from 8 (len 7) find eeee
+   from 1 remove f find c
+   from 8 remove 9 -> find e
+   
 
 Find 1,4,7,8 by count (2,4,3,7
 find 9
